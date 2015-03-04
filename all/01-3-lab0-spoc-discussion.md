@@ -105,7 +105,7 @@ SETGATE(intr, 0,1,2,3);
 
 > intr的值为65538
 
-请分析 [list.h](https://github.com/chyyuu/ucore_lab/blob/master/labcodes/lab2/libs/list.h)内容中大致的含义，并能include这个文件，利用其结构和功能编写一个数据结构链表操作的小C程序
+请分析 [list.h](https://github.com/chyyuu/ucore_lab/blob/master/labcodes/lab2/libs/list.h)内容中大致的含义，并能include这个文 件，利用其结构和功能编写一个数据结构链表操作的小C程序
 - [x]  
 
 > list.h中定义了链表的一些操作（如链表的初始化，两个链表成员的连接，链表成员的删除，在链表中查找特定项的前后项等功能）
