@@ -7,7 +7,8 @@
 能否读懂ucore中的AT&T格式的X86-32汇编语言？请列出你不理解的汇编语言。
 - [x]  
 
->  http://www.imada.sdu.dk/Courses/DM18/Litteratur/IntelnATT.htm
+>  http://www.imada.sdu.dk/Courses/DM18/Litteratur/IntelnATT.htm  
+基本能够读懂
 
 虽然学过计算机原理和x86汇编（根据THU-CS的课程设置），但对ucore中涉及的哪些硬件设计或功能细节不够了解？
 - [x]  
@@ -21,9 +22,9 @@
 - [x]  
 
 >   
-    1. 对uCore代码的理解
-    2. 完成代码的调试
-    3. 环境配置
+    1. 对uCore代码的理解  
+    2. 完成代码的调试  
+    3. 环境配置  
 
 如何把一个在gdb中或执行过程中出现的物理/线性地址与你写的代码源码位置对应起来？
 - [x]  
@@ -60,12 +61,12 @@
 熟悉基本的git命令行操作命令，从github上的[ucore git repo](http://www.github.com/chyyuu/ucore_lab)下载ucore lab实验
 - [x]  
 
-> 
+> 已下载到本地
 
 尝试用qemu+gdb（or ECLIPSE-CDT）调试lab1
 - [x]  
 
-> 
+> 已稍作尝试
 
 对于如下的代码段，请说明”：“后面的数字是什么含义
 ```
@@ -109,12 +110,40 @@ SETGATE(intr, 0,1,2,3);
 请问执行上述指令后， intr的值是多少？
 - [x]  
 
-> 
+> 65538
 
 请分析 [list.h](https://github.com/chyyuu/ucore_lab/blob/master/labcodes/lab2/libs/list.h)内容中大致的含义，并能include这个文件，利用其结构和功能编写一个数据结构链表操作的小C程序
 - [x]  
 
-> 
+>  list.h中定义了链表的一些操作（如链表的初始化，两个链表成员的连接，链表成员的删除，在链表中查找特定项的前后项等功能）
+
+> 小程序如下：
+
+> \#include <iostream>
+
+> \#include "list.h"
+
+> int main()
+
+> {
+    
+> list_entry_t *root;
+
+> list_init(root);
+
+> list_entry_t *p1;
+
+> list_entry_t *p2;
+    
+> list_add_after(root, p2);
+    
+> list_add_before(p2, p1);
+
+> list_del(p1);
+
+>  return 0;
+
+> }
 
 ---
 
@@ -125,6 +154,6 @@ SETGATE(intr, 0,1,2,3);
 是否愿意挑战大实验（大实验内容来源于你的想法或老师列好的题目，需要与老师协商确定，需完成基本lab，但可不参加闭卷考试），如果有，可直接给老师email或课后面谈。
 - [x]  
 
->  
+>  暂否
 
 ---
