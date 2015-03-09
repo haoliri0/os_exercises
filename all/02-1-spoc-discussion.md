@@ -55,6 +55,13 @@
  
  ```
  
+> -- objdump指令是主要的作用是反汇编，但是调用objdump时必须加至少一个参数。例如：-f是返回文件头信息;-D是反汇编对应文件中所有的section;-d是反汇编需要执行指令的那些section。例如:objdump -d lab1-ex0.exe就会输出几千条汇编指令。  
+-- nm是用来列出目标文件的符号清单。例如指令nm lab1-ex0.exe的输出中有如下一行：  
+0000000000407658 T strlen  
+其中T表示这是Global Text类型，strlen为相应的符号  
+-- file是检测文件类型的命令。例如file lab1-ex0.exe它就会说明这是一个可执行文件。  
+Linux系统调用主要通过终端（Terminal）内输入相应指令来实现。输入的指令需要满足一定格式，同时该指令必须存在于Linux的系统调用库中，才能实现对应的功能。  
+
  1. 通过调试[lab1_ex1](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex1.md)了解Linux应用的系统调用执行过程。(w2l1)
  
 
