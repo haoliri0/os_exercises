@@ -43,7 +43,7 @@
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
  > uCore的系统调用有如下几个：sys_exit，sys_fork，sys_wait，sys_exec，sys_yield，sys_kill，sys_getpid，sys_putc，sys_pgdir， sys_gettime，sys_lab6_set_priority，sys_sleep，sys_open，sys_close，sys_read，sys_write，sys_seek，sys_fstat，sys_fsync，sys_getcwd，sys_getdirentry，sys_dup。  
-uCore的系统调用的主要分类为：进程控制（sys_exit），文件系统管理（sys_open），系统控制（sys_gettime）
+uCore的系统调用的主要分类为：进程控制（如sys_exit），文件系统管理（sys_open），系统控制（sys_gettime）
 
 
 ## 3.4 linux系统调用分析
