@@ -31,7 +31,8 @@
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
- 
+> linux系统调用有200多个，可以在内核目录unistd.h中找到，按功能分类大致可分为：进程控制（如exit，pause），文件系统控制（stat，close，open），系统控制（sysinfo），内存管理（brk），网络管理（gethostid），socket控制（socket，bind），用户管理（getuid），进程间通信（ipc）
+
  1. 以ucore lab8的answer为例，uCore的系统调用有哪些？大致的功能分类有哪些？(w2l1)
  
  ```
@@ -41,7 +42,10 @@
   - 答案对上述两个要点进行了正确阐述（2分）
   - 答案除了对上述两个要点都进行了正确阐述外，还进行了扩展和更丰富的说明（3分）
  ```
- 
+ > uCore的系统调用有如下几个：sys_exit，sys_fork，sys_wait，sys_exec，sys_yield，sys_kill，sys_getpid，sys_putc，sys_pgdir， sys_gettime，sys_lab6_set_priority，sys_sleep，sys_open，sys_close，sys_read，sys_write，sys_seek，sys_fstat，sys_fsync，sys_getcwd，sys_getdirentry，sys_dup。  
+uCore的系统调用的主要分类为：进程控制（sys_exit），文件系统管理（sys_open），系统控制（sys_gettime）
+
+
 ## 3.4 linux系统调用分析
  1. 通过分析[lab1_ex0](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab1/lab1-ex0.md)了解Linux应用的系统调用编写和含义。(w2l1)
  
