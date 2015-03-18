@@ -22,7 +22,14 @@ NOTICE
  ```
 - [x]  
 
->  
+> 
+64bit CPU一般只用到其中的48bit，所以其内存最大支持为256TB，但实际上没有那么大，linux 64bit cpu就是64G，MAC pro则是16G
+
+> 
+64bit CPU多级页表级数没有明确的限制，一般都在3级或以上
+
+> 
+多级页表映射过程以2级页表为例：虚拟地址分3块p1,p2,o，p1位1级页表偏移量，以p1找到1级页表对应表项，里面有对应2级页表基址， 再结合p2找到对应表项，里面有物理地址的帧数，在将帧数和o结合，就得到了对应的物理地址  
 
 ## 小组思考题
 ---
@@ -31,7 +38,8 @@ NOTICE
 
 - [x]  
 
-> 500=0.9\*150+0.1\*x
+> 500=0.9\*150+0.1\*x  
+从而解得x = 3650ns = 3.65ms
 
 （2）(spoc) 有一台假想的计算机，页大小（page size）为32 Bytes，支持32KB的虚拟地址空间（virtual address space）,有4KB的物理内存空间（physical memory），采用二级页表，一个页目录项（page directory entry ，PDE）大小为1 Byte,一个页表项（page-table entries
 PTEs）大小为1 Byte，1个页目录表大小为32 Bytes，1个页表大小为32 Bytes。页目录基址寄存器（page directory base register，PDBR）保存了页目录表的物理地址（按页对齐）。
@@ -80,6 +88,23 @@ Virtual Address 7268:
     --> pte index:0x13  pte contents:(valid 1, pfn 0x65)
       --> Translates to Physical Address 0xca8 --> Value: 16
 ```
+
+> 根据testdata中的数据，可以得到如下答案：  
+317a
+	--> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+    	--> pte index:0x17  pte contents:(valid 0, pfn 0x7f)
+      		--> Fault
+
+4546
+	--> pde index:0x1a  pde contents:(valid 1, pfn 0x21)
+    	--> pte index:0x0a  pte contents:(valid 0, pfn 0x7f)
+      		--> Fault
+
+2c03
+	--> pde index:01011  pde contents:(valid 1, pfn 0x44)
+    	--> pte index:00000  pte contents:(valid 1, pfn 0x57)
+      		--> offset:00011 --> Value : 16
+
 
 
 
