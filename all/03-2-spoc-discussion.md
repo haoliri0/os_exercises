@@ -23,7 +23,8 @@ NOTICE
 - [x]  
 
 > 
-64bit CPU一般只用到其中的48bit，所以其内存最大支持为256TB，但实际上没有那么大，linux 64bit cpu就是64G，MAC pro则是16G
+64bit 的CPU理论上可以支持16EB的内存空间  
+但实际的64bit主机内一般只有48根地址，所以其内存最大支持为256TB。并且实际上能用到的更少，如linux 64bit cpu就是64G，MAC pro则是16G
 
 > 
 64bit CPU多级页表级数没有明确的限制，一般都在3级或以上
@@ -90,21 +91,57 @@ Virtual Address 7268:
 ```
 
 > 根据testdata中的数据，可以得到如下答案：  
-317a
-	--> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
-    	--> pte index:0x17  pte contents:(valid 0, pfn 0x7f)
-      		--> Fault
 
-4546
-	--> pde index:0x1a  pde contents:(valid 1, pfn 0x21)
-    	--> pte index:0x0a  pte contents:(valid 0, pfn 0x7f)
-      		--> Fault
+```
+Virtual Address 6c74:
+  --> pde index:0x1b  pde contents:(valid 1, pfn 0x20)
+    --> pte index:0x03  pte contens:(valid 1, pfn 0x61)
+      --> Transflates to Physical Address 0xc34 --> Value 06
 
-2c03
-	--> pde index:01011  pde contents:(valid 1, pfn 0x44)
-    	--> pte index:00000  pte contents:(valid 1, pfn 0x57)
-      		--> offset:00011 --> Value : 16
+Virtual Address 6b22:
+  --> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+    --> pte index:0x19  pte contents:(valid 1, pfn 0x47)
+      --> Transflates to Physical Address 0x5e2 --> Value 1a
 
+Virtual Address 03df:
+  --> pde index:0x0  pde contents:(valid 1, pfn 0x5a)
+    --> pte index:0x1e  pte contents:(valid 1, pfn 0x5)
+      --> Transflates to Physical Address 0x161 --> Value 0f
+
+Virtual Address 69dc:
+  --> pde index:0x1a  pde contents:(valid 1, pfn 0x52)
+    --> pte index:0xe  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+
+Virtual Address 317a:
+  --> pde index:0xc pde contents:(valid 1, pfn 0x18)
+    --> pte index:0xb pte contents:(valid 1, pfn 0x35)
+      --> transflates to Physical Address 47a --> Value 1e
+
+Virtual Address 4546:
+  --> pde index:0x11 pde contents:(valid 1, pfn 0x21)
+    --> pte index:0x0a pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+
+Virtual Address 2c03:
+  --> pde index:0xb pde contents:(valid 1, pfn 0x44)
+    --> pte index:0x0 pte contents:(valid 1, pfn 0x57)
+      --> Transflates to Physical Address 0xae3 --> Value 16                
+
+Virtual Address 7fd7:
+  --> pde index:0x1f  pde contents:(valid 1, pfn 0x12)
+    --> pte index:0x1e  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid) 
+
+Virtual Address 390e:
+  --> pde index:0xe  pde contents:(valid 0, pfn 0x7f)
+    --> Fault (page directory entry not valid)
+
+Virtual Address 748b:
+  --> pde index:0x1d  pde contents:(valid 1, pfn 0x0)
+    --> pte index:0x4  pte contents:(valid 0, pfn 0x7f)
+      --> Fault (page table entry not valid)
+```
 
 
 
