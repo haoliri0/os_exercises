@@ -41,7 +41,7 @@ x86保护模式中权限管理无处不在，下面哪些时候要检查访问�
 
 - [x]  
 
-> 
+> 没有初始化IDT，当qemu运行时产生中断请求，发现无法处理，其产生一个异常，因为IDT表妹初始化，又处理不了这个异常，又产生了同一个异常，出现两次相同的异常，表明该异常无法处理，qemu退出
 
 （2）(spoc)假定你已经完成了lab1的实验,接下来是对lab1的中断处理的回顾：请把你的学号对37(十进制)取模，得到一个数x（x的范围是-1<x<37），然后在你的答案的基础上，修init.c中的kern_init函数，在大约36行处，即
 
@@ -110,7 +110,36 @@ va 0xcd82c07c, pa 0x0c20907c, pde_idx 0x00000336, pde_ctx  0x00037003, pte_idx 0
 
 - [x]  
 
-> 
+> 具体代码如下(C++): 
+```
+#include <iostream>
+
+unsigned int va,pa;
+
+using namespace std;
+
+int main() {
+    //va = 0xc2265b1f, pa = 0x0d8f1b1f;
+    //va = 0xcc386bbc, pa = 0x0414cbbc;
+    //va = 0xc7ed4d57, pa = 0x07311d57;
+    va = 0xce6c3f32, pa = 0x007d4f32;
+    unsigned int n1 = va >> 22;
+    unsigned int n2 = (va >> 12) % 1024;
+    cout << "va 0x" << hex << va << ", pa 0x" << pa;
+    cout << ", pde_idx 0x" << hex << n1;
+    n1 = n1-768+1;
+    unsigned int pde_ctx = (n1 << 12) + 3;
+    cout << ", pde_ctx 0x" << hex << pde_ctx;
+    cout << ", pte_idx 0x" << hex << n2;
+    unsigned int pte_ctx = ((pa >> 12) << 12) | 0x3;
+    cout << ", pte_ctx 0x" << hex << pte_ctx;
+}
+```
+> 为了方便检查，只选取前三个和最后一个测例，具体结果如下：  
+1. va 0xc2265b1f, pa 0xd8f1b1f, pde_idx 0x308, pde_ctx 0x9003, pte_idx 0x265, pte_ctx 0xd8f1003  
+2. va 0xcc386bbc, pa 0x414cbbc, pde_idx 0x330, pde_ctx 0x31003, pte_idx 0x386, pte_ctx 0x414c003  
+3. va 0xc7ed4d57, pa 0x7311d57, pde_idx 0x31f, pde_ctx 0x20003, pte_idx 0x2d4, pte_ctx 0x7311003  
+10. va 0xce6c3f32, pa 0x7d4f32, pde_idx 0x339, pde_ctx 0x3a003, pte_idx 0x2c3, pte_ctx 0x7d4003  
 
 ---
 
