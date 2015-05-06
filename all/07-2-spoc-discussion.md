@@ -52,11 +52,13 @@ s.count--;              //有可用资源，占用该资源；
 
 1. （spoc） 每人用python threading机制用信号量和条件变量两种手段分别实现[47个同步问题](07-2-spoc-pv-problems.md)中的一题。向勇老师的班级从前往后，陈渝老师的班级从后往前。请先理解[]python threading 机制的介绍和实例](https://github.com/chyyuu/ucore_lab/tree/master/related_info/lab7/semaphore_condition)
 
-> 李日灵 2012011332
-我选择的是第7题：
-设有一个可以装A、B两种物品的仓库,其容量有限(分别为N),但要求仓库中A、B两种物品的数量满足下述不等式: -M≤A物品数量-B物品数量≤N 其中M和N为正整数。另外,还有一个进程消费A,B,一次取一个A,B组装成C。 试用信号量和PV操作描述A、B两种物品的入库过程。
-解：因为0<=A,B<=N,所以0<=A-B<=N恒成立，因而可以去掉一个条件。另，原题所附的伪代码有误，修改后semaphore和lock两种方式的伪代码如下：
-1、semaphore
+> 李日灵 2012011332  
+我选择的是第7题：  
+设有一个可以装A、B两种物品的仓库,其容量有限(分别为N),但要求仓库中A、B两种物品的数量满足下述不等式: -M≤A物品数量-B物品数量≤N 其中M和N为正整数。另外,还有一个进程消费A,B,一次取一个A,B组装成C。 试用信号量和PV操作描述A、B两种物品的入库过程。  
+解：因为0<=A,B<=N,所以0<=A-B<=N恒成立，因而可以去掉一个条件。另，原题所附的伪代码有误，修改后semaphore和lock两种方式的伪代码如下：  
+1、semaphore  
+
+```
 semaphore mutex=1,diff=m,empty1=N,empty2=N,full1,full2=0;
 cobegin
 	process(A);
@@ -103,9 +105,10 @@ begin
 	v(empty2);
 	end
 end
- 
-2、lock伪代码
+```
 
+2、lock伪代码
+```
 procedure producerA() {
 	lock->Acquire();
 	while (countA == n)
@@ -140,7 +143,8 @@ admit_A.Signal();
 admit_B.signal();
 lock->Release(); 
 }
- 
+```
+
 对应的python代码
 semaphore方法：
 ```
