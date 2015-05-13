@@ -46,6 +46,7 @@
 
 ## 小组思考题
  1. (spoc)完成Simple File System的功能，支持应用程序的一般文件操作。具体帮助和要求信息请看[sfs-homework](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab8/sfs-homework.md)
+
 > 完成的代码如下：
 ```
     def deleteFile(self, tfile):
