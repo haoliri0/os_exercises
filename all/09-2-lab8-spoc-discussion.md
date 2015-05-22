@@ -48,7 +48,7 @@
 1. (spoc) 理解文件访问的执行过程，即在ucore运行过程中通过`cprintf`函数来完整地展现出来读一个文件在ucore中的整个执行过程，(越全面细致越好)
 完成代码填写，并形成spoc练习报告，需写练习报告和简单编码，完成后放到git server 对应的git repo中
 
-> 链接如下  
+> 链接如下：  
 https://github.com/tuxchow/os_exercises/tree/master/code/lab8_result  
 
 
