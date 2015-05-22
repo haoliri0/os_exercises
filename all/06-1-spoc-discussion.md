@@ -67,6 +67,7 @@
 
 
 > 代码如下
+
 ```
 #! /usr/bin/env python
 
@@ -289,6 +290,7 @@ Final statistics:
 ```
 
 采用SJF调度算法
+
 ```
  ./scheduler-homework.py  -p SJF
 ARG policy SJF
@@ -318,6 +320,7 @@ Final statistics:
 ```
 
 采用RR调度算法
+
 ```
  ./scheduler-homework.py  -p RR
 ARG policy RR
